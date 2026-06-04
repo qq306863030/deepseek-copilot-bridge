@@ -1,13 +1,15 @@
 # DeepSeek Copilot Bridge
 
-A lightweight bridge service that provides an OpenAI-compatible API for VSCode Copilot, supporting DeepSeek, MiniMax, self-hosted models, and more.
+[English](README_EN.md) | 中文
+
+为 VS Code 中的 Copilot 提供模型适配桥接的轻量服务，可将 DeepSeek、MiniMax 以及本地模型服务统一转换为 Copilot 可以直接使用的Ollama接口。
 
 ## 功能特性
 
-- **OpenAI 兼容接口** - 无缝对接 VSCode Copilot
-- **多模型支持** - DeepSeek、 MiniMax、本地模型等
-- **灵活配置** - 通过环境变量配置模型和能力
-- **自动模型发现** - 支持从 API 端点自动获取模型列表
+- **Copilot 桥接** - 面向 VS Code Copilot 的接入场景，补齐不同模型服务之间的接口适配
+- **OpenAI 兼容** - 支持 `/v1/models`、`/v1/chat/completions` 等标准端点
+- **多模型接入** - 可桥接 DeepSeek、MiniMax 以及本地 Ollama/LM Studio 等后端
+- **配置简单** - 通过环境变量即可调整模型列表、能力声明和上下文长度
 
 ## 快速开始
 
@@ -18,6 +20,9 @@ npm install
 # 启动服务
 npm start     # 生产环境 (PM2)
 npm run dev   # 开发环境
+
+# Copilot配置
+VSCode Copilot => 管理语言模型 => 添加模型 => Ollama => http://localhost:11435 (项目默认端口11435)
 ```
 
 ## 配置说明
@@ -105,7 +110,7 @@ MODELS=`
 `
 ```
 
-### 本地服务 (Ollama / LM Studio)
+### 本地服务
 
 ```dotenv
 OPENAI_API_KEY="sk-xxx"
