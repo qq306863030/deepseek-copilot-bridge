@@ -1,0 +1,17 @@
+{
+  "name": "deepseek-copilot-bridge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A bridge between VSCode Copilot and models (DeepSeek, MiniMax, MiMo, self-hosted models, etc.)",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
