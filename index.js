@@ -21,8 +21,8 @@ if (fs.existsSync(envDevPath)) {
 
 // 从环境变量获取配置
 const API_KEY = process.env.OPENAI_API_KEY || ''
-const BASE_URL = process.env.OPENAI_BASE_URL || 'https://ollama.com:443/v1'
-const HOST = process.env.HOST || '0.0.0.0'
+const BASE_URL = process.env.OPENAI_BASE_URL || 'https://api.deepseek.com'
+const HOST = '0.0.0.0'
 const parseIntEnv = (value, fallback) => {
   const parsed = parseInt(String(value ?? ''), 10)
   return Number.isNaN(parsed) ? fallback : parsed
