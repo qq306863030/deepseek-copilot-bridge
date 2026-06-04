@@ -2,7 +2,7 @@
 
 [English](README_EN.md) | 中文
 
-为 VS Code 中的 Copilot 提供模型适配桥接的轻量服务，可将 DeepSeek、MiniMax 以及本地模型服务统一转换为 Copilot 可以直接使用的Ollama接口。
+为 VS Code 中的 Copilot 提供模型适配桥接的轻量服务，可将 DeepSeek、Qwen、MiniMax 以及本地模型服务统一转换为 Copilot 可以直接使用的Ollama接口。
 
 ## 功能特性
 
@@ -17,8 +17,14 @@
 # 安装依赖
 npm install
 
-# 启动服务
+# 修改.env.prod文件
+支持所有OpenAI规范的服务：DeepSeek、MiniMax、Qwen等
+
+# 启动服务(两种方式选一种)
+## PM2启动服务
 npm start     # 生产环境 (PM2)
+
+## Nodejs启动服务
 npm run dev   # 开发环境
 
 # Copilot配置

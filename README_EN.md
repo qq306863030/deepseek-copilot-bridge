@@ -2,13 +2,13 @@
 
 [English](README_EN.md) | [中文](README.md)
 
-A lightweight bridge service for VS Code Copilot, converting DeepSeek, MiniMax, and local model services into Ollama-compatible interfaces that Copilot can use directly.
+A lightweight bridge service for VS Code Copilot, converting DeepSeek, Qwen, MiniMax, and local model services into Ollama-compatible interfaces that Copilot can use directly.
 
 ## Features
 
 - **Copilot Bridge** - Designed for VS Code Copilot integration, bridging interface differences between model providers
 - **OpenAI Compatible** - Supports `/v1/models`, `/v1/chat/completions` and other standard endpoints
-- **Multi-Model** - Connects to DeepSeek, MiniMax, and local Ollama/LM Studio backends
+- **Multi-Model** - Connects to DeepSeek, MiniMax, Qwen, and local Ollama/LM Studio backends
 - **Simple Config** - Adjust model list, capabilities, and context length via environment variables
 
 ## Quick Start
@@ -17,8 +17,14 @@ A lightweight bridge service for VS Code Copilot, converting DeepSeek, MiniMax, 
 # Install dependencies
 npm install
 
-# Start service
-npm start     # Production (PM2)
+# Modify .env.prod
+Supports all OpenAI-compatible services: DeepSeek, MiniMax, Qwen, etc.
+
+# Start service (choose one)
+## PM2
+npm start     # Production
+
+## Node.js
 npm run dev   # Development
 
 # Copilot Configuration
@@ -61,15 +67,18 @@ MODELS=[]
 MODELS=["deepseek-v4-flash", "deepseek-v4-pro"]
 
 # Fine-grained config (highest priority)
-MODELS=`[{
+MODELS=
+[{
     "name": "MiniMax-M3",
     "content_length": 1000000,
     "capabilities": ["completion", "tools", "thinking", "vision"]
-}, {
+},
+{
     "name": "MiniMax-M2.7",
     "content_length": 200000,
     "capabilities": ["completion", "tools", "thinking"]
-}]`
+}]
+`
 ```
 
 ## Config Examples
@@ -93,15 +102,18 @@ OPENAI_BASE_URL="https://api.minimaxi.com/v1"
 PORT=11435
 CAPABILITIES=[]
 CONTEXT_LENGTH=0
-MODELS=`[{
+MODELS=
+[{
     "name": "MiniMax-M3",
     "content_length": 1000000,
     "capabilities": ["completion", "tools", "thinking", "vision"]
-}, {
+},
+{
     "name": "MiniMax-M2.7",
     "content_length": 200000,
     "capabilities": ["completion", "tools", "thinking"]
-}]`
+}]
+`
 ```
 
 ### Local Service
