@@ -5,15 +5,16 @@ const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
 
+const startTime = Date.now()
 const envDevPath = path.resolve(process.cwd(), '.env.dev')
 const envProdPath = path.resolve(process.cwd(), '.env.prod')
 
 if (fs.existsSync(envDevPath)) {
-  require('dotenv').config({ path: envDevPath })
+  require('dotenv').config({ path: envDevPath, quiet: true })
 } else if (fs.existsSync(envProdPath)) {
-  require('dotenv').config({ path: envProdPath })
+  require('dotenv').config({ path: envProdPath, quiet: true })
 } else {
-  require('dotenv').config()
+  require('dotenv').config({ quiet: true })
 }
 
 // 从环境变量获取配置
@@ -38,7 +39,7 @@ if (MODELS.length === 0) {
       MODELS = response.data.data || []
     })
     .catch((error) => {
-      console.error('Error fetching models from Ollama:', error.message)
+      console.error(`Error fetching models from ${BASE_URL}/models:`, error.message)
     })
 } else {
   MODELS = MODELS.map((model) => {
@@ -62,6 +63,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json({ limit: '50mb' }))
+app.use(morgan('dev'))
 
 // GET /api/tags - 获取模型列表
 app.get('/api/tags', (req, res) => {
@@ -212,8 +214,23 @@ app.get('/api/version', (req, res) => {
   })
 })
 
+const os = require('os')
+
 app.listen(PORT, HOST, () => {
-  console.log(
-    `Ollama mock server running on http://${HOST === '0.0.0.0' ? 'localhost' : HOST}:${PORT}`,
-  )
+  const interfaces = os.networkInterfaces()
+  const addresses = []
+
+  Object.values(interfaces).forEach((ifaceList) => {
+    ifaceList.forEach((iface) => {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        addresses.push(iface.address)
+      }
+    })
+  })
+
+  console.log(`Ollama Mock Server v1.0.0  ready in ${Date.now() - startTime} ms\n`)
+  console.log(`  ➜  Local:   http://localhost:${PORT}`)
+  addresses.forEach((ip) => {
+    console.log(`  ➜  Network: http://${ip}:${PORT}`)
+  })
 })

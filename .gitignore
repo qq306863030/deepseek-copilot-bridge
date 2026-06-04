@@ -5,6 +5,7 @@ node_modules/
 .env.dev
 .env-local
 .env-deepseek
+package-lock.json
 
 # Logs
 logs/
