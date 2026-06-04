@@ -5,6 +5,7 @@ node_modules/
 .env.dev
 .env-local
 .env-deepseek
+.env-minimax
 package-lock.json
 
 # Logs
