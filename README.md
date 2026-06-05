@@ -18,17 +18,20 @@
 npm install
 
 # 修改.env.prod文件
-支持所有OpenAI规范的服务：DeepSeek、MiniMax、Qwen等
+支持所有兼容OpenAI的服务：DeepSeek、MiniMax、Qwen等
 
 # 启动服务(两种方式选一种)
-## PM2启动服务
+## PM2启动服务（后台启动）
 npm start     # 生产环境 (PM2)
 
-## Nodejs启动服务
+## Nodejs启动服务 （命令行启动）
 npm run dev   # 开发环境
 
 # Copilot配置
-VSCode Copilot => 管理语言模型 => 添加模型 => Ollama => http://localhost:11435 (项目默认端口11435)
+VSCode Copilot => 管理语言模型 => 添加模型 => Ollama => http://localhost:11435 (项目默认端口11435) => 选择模型
+
+# 通过Copilot配置开机自动启动
+VSCode Copilot => 选择本地模型 => 输入"将这个项目设置为开机自动启动"
 ```
 
 ## 配置说明

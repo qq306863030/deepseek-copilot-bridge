@@ -21,14 +21,17 @@ npm install
 Supports all OpenAI-compatible services: DeepSeek, MiniMax, Qwen, etc.
 
 # Start service (choose one)
-## PM2
+## PM2 (background)
 npm start     # Production
 
-## Node.js
+## Node.js (command line)
 npm run dev   # Development
 
 # Copilot Configuration
-VSCode Copilot => Manage Language Models => Add Model => Ollama => http://localhost:11435 (default port)
+VSCode Copilot => Manage Language Models => Add Model => Ollama => http://localhost:11435 (default port) => Select model
+
+# Auto-start on boot via Copilot
+VSCode Copilot => Select Local Model => Enter "Set this project to start automatically on boot"
 ```
 
 ## Configuration
