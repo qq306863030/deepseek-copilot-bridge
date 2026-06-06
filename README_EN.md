@@ -4,6 +4,13 @@
 
 A lightweight bridge service for VS Code Copilot, converting DeepSeek, Qwen, MiniMax, and local model services into Ollama-compatible interfaces that Copilot can use directly.
 
+<p align="center">
+  <img src="img/img1.jfif" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
+</p>
+<p align="center">
+  <img src="img/img2.jfif" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
+</p>
+
 ## Features
 
 - **Copilot Bridge** - Designed for VS Code Copilot integration, bridging interface differences between model providers

@@ -4,6 +4,13 @@
 
 为 VS Code 中的 Copilot 提供模型适配桥接的轻量服务，可将 DeepSeek、Qwen、MiniMax 以及本地模型服务统一转换为 Copilot 可以直接使用的Ollama接口。
 
+<p align="center">
+  <img src="img/img1.jfif" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
+</p>
+<p align="center">
+  <img src="img/img2.jfif" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
+</p>
+
 ## 功能特性
 
 - **Copilot 桥接** - 面向 VS Code Copilot 的接入场景，补齐不同模型服务之间的接口适配
