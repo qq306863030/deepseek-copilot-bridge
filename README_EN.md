@@ -5,7 +5,7 @@
 A lightweight bridge service for VS Code Copilot, converting DeepSeek, Qwen, MiniMax, and local model services into Ollama-compatible interfaces that Copilot can use directly.
 
 <p align="center">
-  <img src="img/img1.jfif" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
+  <img src="img/img1.jpg" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
 </p>
 <p align="center">
   <img src="img/img2.jfif" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
@@ -24,21 +24,24 @@ A lightweight bridge service for VS Code Copilot, converting DeepSeek, Qwen, Min
 # Install dependencies
 npm install
 
-# Modify .env.prod
-Supports all OpenAI-compatible services: DeepSeek, MiniMax, Qwen, etc.
+# Edit your environment file (for example, .env.prod)
+# The bridge supports any OpenAI-compatible backend: DeepSeek, MiniMax, Qwen, local Ollama/LM Studio, etc.
 
-# Start service (choose one)
-## PM2 (background)
-npm start     # Production
+# Start the service (choose one)
+## PM2 (background / production)
+npm start    # Production (ecosystem.config.js will scan .env-* files, then .env.prod)
 
-## Node.js (command line)
-npm run dev   # Development
+## Node.js (foreground / development)
+node index [--config .env.prod]
 
-# Copilot Configuration
-VSCode Copilot => Manage Language Models => Add Model => Ollama => http://localhost:11435 (default port) => Select model
+# Copilot configuration in VS Code
+# 1. VSCode Copilot -> Manage Language Models
+# 2. Add Model -> Ollama
+# 3. Enter the bridge URL: http://localhost:11435 (default port)
+# 4. Select a model
 
-# Auto-start on boot via Copilot
-VSCode Copilot => Select Local Model => Enter "Set this project to start automatically on boot"
+# Optional: configure Copilot to auto-start the selected local model on boot
+# VSCode Copilot -> Select Local Model -> enter the option to set this project to start automatically on boot
 ```
 
 ## Configuration

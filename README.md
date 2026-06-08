@@ -5,7 +5,7 @@
 为 VS Code 中的 Copilot 提供模型适配桥接的轻量服务，可将 DeepSeek、Qwen、MiniMax 以及本地模型服务统一转换为 Copilot 可以直接使用的Ollama接口。
 
 <p align="center">
-  <img src="img/img1.jfif" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
+  <img src="img/img1.jpg" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
 </p>
 <p align="center">
   <img src="img/img2.jfif" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
@@ -29,10 +29,10 @@ npm install
 
 # 启动服务(两种方式选一种)
 ## PM2启动服务（后台启动）
-npm start     # 生产环境 (PM2)
+npm start # 生产环境 (PM2) 执行顺序：先检测目录中的.env-*文件（可开启多个服务），再检测.env.prod
 
 ## Nodejs启动服务 （命令行启动）
-npm run dev   # 开发环境
+node index [--config .env.prod]   # 开发环境
 
 # Copilot配置
 VSCode Copilot => 管理语言模型 => 添加模型 => Ollama => http://localhost:11435 (项目默认端口11435) => 选择模型
