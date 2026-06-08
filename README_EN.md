@@ -142,10 +142,6 @@ MODELS=[]
 The project supports creating multiple environment files in the repository root that start with `.env-` (for example `.env-1`, `.env-qa`, `.env-prod`). The `ecosystem.config.js` will automatically scan these files and create a separate PM2 process for each.
 
 - Each process is started with an equivalent command: `node index.js --config <env-file>`, e.g. `node index.js --config .env-1`.
-- Before starting, the config performs two checks:
-  - Ensure `PORT` values across different env files are not duplicated;
-  - Ensure each `PORT` is not already in use by another process.
-  If any conflict or occupied port is detected, PM2 startup will abort and print an error indicating the conflicting file and port number.
 
 Example:
 
