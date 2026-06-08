@@ -32,7 +32,7 @@ npm install
 npm start    # Production (ecosystem.config.js will scan .env-* files, then .env.prod)
 
 ## Node.js (foreground / development)
-node index [--config .env.prod]
+node index.js [--config .env.prod]
 
 # Copilot configuration in VS Code
 # 1. VSCode Copilot -> Manage Language Models
