@@ -137,6 +137,47 @@ CONTEXT_LENGTH=200000
 MODELS=[]
 ```
 
+## Start multiple services (PM2)
+
+The project supports creating multiple environment files in the repository root that start with `.env-` (for example `.env-1`, `.env-qa`, `.env-prod`). The `ecosystem.config.js` will automatically scan these files and create a separate PM2 process for each.
+
+- Each process is started with an equivalent command: `node index.js --config <env-file>`, e.g. `node index.js --config .env-1`.
+- Before starting, the config performs two checks:
+  - Ensure `PORT` values across different env files are not duplicated;
+  - Ensure each `PORT` is not already in use by another process.
+  If any conflict or occupied port is detected, PM2 startup will abort and print an error indicating the conflicting file and port number.
+
+Example:
+
+1. Create two env files `.env-1` and `.env-2` (example contents):
+
+```powershell
+# .env-1
+OPENAI_API_KEY="sk-xxx-1"
+OPENAI_BASE_URL="https://api.deepseek.com"
+PORT=11435
+CAPABILITIES=["completion","tools","thinking"]
+
+# .env-2
+OPENAI_API_KEY="sk-xxx-2"
+OPENAI_BASE_URL="http://localhost:3001/v1"
+PORT=11436
+CAPABILITIES=["completion","tools"]
+```
+
+2. Start all processes with PM2:
+
+```powershell
+npm run start
+```
+
+3. Troubleshooting:
+
+- `Port conflict` means two env files define the same `PORT` — change one of them;
+- `Port <n> is already in use` means the port is taken by another process — free it or change the `PORT`.
+
+This makes it easy to run multiple instances with different configurations on the same host for testing or traffic segregation.
+
 ## API Endpoints
 
 - `GET /v1/models` - List models

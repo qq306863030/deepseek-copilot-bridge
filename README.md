@@ -137,6 +137,48 @@ CONTEXT_LENGTH=200000
 MODELS=[]
 ```
 
+## 启动多个服务 (PM2)
+
+项目支持在根目录中创建多个以 `.env-` 开头的配置文件（例如 `.env-1`, `.env-2`, `.env-3`），`ecosystem.config.js` 会自动扫描这些文件并为每个文件创建一个独立的 PM2 实例。
+
+- 实例启动命令等价于：`node index.js --config <env-file>`，例如 `node index.js --config .env-1`。
+- 在启动前会做两项检查：
+  - 检查不同配置文件中 `PORT` 是否重复；
+  - 检查每个 `PORT` 是否已被其他进程占用。
+  如果检测到冲突或端口被占用，PM2 启动会报错并停止，错误信息会指出冲突的文件和端口号，便于排查。
+
+示例：
+
+1. 创建两个配置文件 `.env-1` 和 `.env-2`（示例内容）：
+
+```powershell
+# .env-1
+OPENAI_API_KEY="sk-xxx-1"
+OPENAI_BASE_URL="https://api.deepseek.com"
+PORT=11435
+CAPABILITIES=["completion","tools","thinking"]
+
+# .env-2
+OPENAI_API_KEY="sk-xxx-2"
+OPENAI_BASE_URL="http://localhost:3001/v1"
+PORT=11436
+CAPABILITIES=["completion","tools"]
+```
+
+2. 使用 PM2 启动所有实例：
+
+```powershell
+npm run start
+```
+
+3. 常见错误与处理：
+
+- 如果出现 `Port conflict` 错误，说明两个配置文件使用了相同的 `PORT`，请修改其中一个文件的 `PORT` 值；
+- 如果出现 `Port <n> is already in use`，说明该端口被其他进程占用，请释放端口或更换 `PORT`。
+
+此功能便于在同一台机器上并行运行多个不同环境或不同模型配置的实例，便于测试和分流请求。
+
+
 ## API 端点
 
 服务启动后提供以下端点：
@@ -151,3 +193,5 @@ MODELS=[]
 ├── .env.dev          # 开发环境配置（优先读取）
 └── .env.prod         # 生产环境配置
 ```
+
+

@@ -8,15 +8,42 @@ const os = require('os')
 const { generateRandomString } = require('./utils')
 
 const startTime = Date.now()
-const envDevPath = path.resolve(process.cwd(), '.env.dev')
-const envProdPath = path.resolve(process.cwd(), '.env.prod')
 
-if (fs.existsSync(envDevPath)) {
-  require('dotenv').config({ path: envDevPath, quiet: true })
-} else if (fs.existsSync(envProdPath)) {
-  require('dotenv').config({ path: envProdPath, quiet: true })
+// 解析命令行参数 --config <path>
+const args = process.argv.slice(2)
+const configIndex = args.indexOf('--config')
+let envPath = null
+if (configIndex !== -1 && args[configIndex + 1]) {
+  envPath = path.resolve(process.cwd(), args[configIndex + 1])
+}
+
+// 根据是否有传入配置文件选择加载逻辑
+if (envPath) {
+  if (fs.existsSync(envPath)) {
+    require('dotenv').config({ path: envPath, quiet: true })
+    console.log(`[env] Loaded config from: ${envPath}`)
+  } else {
+    console.warn(`[env] Config file not found: ${envPath}, fallback to default logic`)
+    const envDevPath = path.resolve(process.cwd(), '.env.dev')
+    const envProdPath = path.resolve(process.cwd(), '.env.prod')
+    if (fs.existsSync(envDevPath)) {
+      require('dotenv').config({ path: envDevPath, quiet: true })
+    } else if (fs.existsSync(envProdPath)) {
+      require('dotenv').config({ path: envProdPath, quiet: true })
+    } else {
+      require('dotenv').config({ quiet: true })
+    }
+  }
 } else {
-  require('dotenv').config({ quiet: true })
+  const envDevPath = path.resolve(process.cwd(), '.env.dev')
+  const envProdPath = path.resolve(process.cwd(), '.env.prod')
+  if (fs.existsSync(envDevPath)) {
+    require('dotenv').config({ path: envDevPath, quiet: true })
+  } else if (fs.existsSync(envProdPath)) {
+    require('dotenv').config({ path: envProdPath, quiet: true })
+  } else {
+    require('dotenv').config({ quiet: true })
+  }
 }
 
 // 从环境变量获取配置
