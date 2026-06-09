@@ -8,7 +8,7 @@ A lightweight bridge service for VS Code Copilot, converting DeepSeek, Qwen, Min
   <img src="img/img1.jpg" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
 </p>
 <p align="center">
-  <img src="img/img2.jfif" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
+  <img src="img/img2.jpg" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
 </p>
 
 ## Features
@@ -31,6 +31,9 @@ npm install
 ## PM2 (background / production)
 npm start    # Production (ecosystem.config.js will scan .env-* files, then .env.prod)
 
+# Stop the service
+npm run stop
+
 ## Node.js (foreground / development)
 node index.js [--config .env.prod]
 
@@ -41,7 +44,7 @@ node index.js [--config .env.prod]
 # 4. Select a model
 
 # Optional: configure Copilot to auto-start the selected local model on boot
-# VSCode Copilot -> Select Local Model -> enter the option to set this project to start automatically on boot
+# VSCode Copilot -> Select Local Model -> Enter "Set this project's 'npm run start' as a startup item"
 ```
 
 ## Configuration
@@ -170,7 +173,13 @@ CAPABILITIES=["completion","tools"]
 npm run start
 ```
 
-3. Troubleshooting:
+3. Stop all PM2 instances started by this project:
+
+```powershell
+npm run stop
+```
+
+4. Troubleshooting:
 
 - `Port conflict` means two env files define the same `PORT` — change one of them;
 - `Port <n> is already in use` means the port is taken by another process — free it or change the `PORT`.

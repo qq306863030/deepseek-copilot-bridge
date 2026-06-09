@@ -8,7 +8,7 @@
   <img src="img/img1.jpg" alt="DeepSeek Copilot Bridge Screenshot 1" width="45%" />
 </p>
 <p align="center">
-  <img src="img/img2.jfif" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
+  <img src="img/img2.jpg" alt="DeepSeek Copilot Bridge Screenshot 2" width="45%" />
 </p>
 
 ## 功能特性
@@ -31,6 +31,9 @@ npm install
 ## PM2启动服务（后台启动）
 npm start # 生产环境 (PM2) 执行顺序：先检测目录中的.env-*文件（可开启多个服务），再检测.env.prod
 
+# 停止服务
+npm run stop
+
 ## Nodejs启动服务 （命令行启动）
 node index.js [--config .env.prod]   # 开发环境
 
@@ -38,7 +41,7 @@ node index.js [--config .env.prod]   # 开发环境
 VSCode Copilot => 管理语言模型 => 添加模型 => Ollama => http://localhost:11435 (项目默认端口11435) => 选择模型
 
 # 通过Copilot配置开机自动启动
-VSCode Copilot => 选择本地模型 => 输入"将这个项目设置为开机自动启动"
+VSCode Copilot => 选择本地模型 => 输入"帮我把这个项目的'npm run start'设置为开机启动项"
 ```
 
 ## 配置说明
@@ -167,7 +170,13 @@ CAPABILITIES=["completion","tools"]
 npm run start
 ```
 
-3. 常见错误与处理：
+3. 停止所有由该项目启动的 PM2 实例：
+
+```powershell
+npm run stop
+```
+
+4. 常见错误与处理：
 
 - 如果出现 `Port conflict` 错误，说明两个配置文件使用了相同的 `PORT`，请修改其中一个文件的 `PORT` 值；
 - 如果出现 `Port <n> is already in use`，说明该端口被其他进程占用，请释放端口或更换 `PORT`。
