@@ -305,8 +305,6 @@ app.get('/api/version', (req, res) => {
   })
 })
 
-
-
 app.listen(PORT, HOST, () => {
   const interfaces = os.networkInterfaces()
   const addresses = []
