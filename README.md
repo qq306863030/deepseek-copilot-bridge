@@ -129,6 +129,30 @@ MODELS=`
 `
 ```
 
+### 火山引擎（豆包模型）
+
+```dotenv
+OPENAI_API_KEY="ark-xxxxxxxx"
+OPENAI_BASE_URL="https://ark.cn-beijing.volces.com/api/coding/v3"
+PORT=11436
+CAPABILITIES=["completion", "tools", "thinking", "vision"]
+CONTEXT_LENGTH=1000000
+MODELS=`
+[
+	{"name":"doubao-seed-2.0-code","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
+	{"name":"doubao-seed-2.0-pro","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
+	{"name":"doubao-seed-2.0-lite","content_length":256000,"capabilities":["completion","tools","thinking"]},
+	{"name":"doubao-seed-code","content_length":128000,"capabilities":["completion","tools"]},
+	{"name":"minimax-m2.7","content_length":200000,"capabilities":["completion","tools","thinking"]},
+	{"name":"minimax-m3","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
+	{"name":"glm-5.1","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
+	{"name":"deepseek-v4-flash","content_length":128000,"capabilities":["completion","tools"]},
+	{"name":"deepseek-v4-pro","content_length":128000,"capabilities":["completion","tools","thinking"]},
+	{"name":"kimi-k2.6","content_length":2000000,"capabilities":["completion","tools","thinking","vision"]}
+]
+`
+```
+
 ### 本地服务
 
 ```dotenv
