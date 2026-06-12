@@ -3,9 +3,7 @@ node_modules/
 
 # Environment files
 .env.dev
-.env-local
-.env-deepseek
-.env-minimax
+.env-*
 package-lock.json
 
 # Logs
@@ -43,4 +41,4 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
-.env-*.dev
+
