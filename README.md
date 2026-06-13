@@ -142,7 +142,7 @@ MODELS=`
 	{"name":"doubao-seed-2.0-code","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
 	{"name":"doubao-seed-2.0-pro","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
 	{"name":"doubao-seed-2.0-lite","content_length":250000,"capabilities":["completion","tools","thinking"]},
-	{"name":"doubao-seed-code","content_length"125000,"capabilities":["completion","tools"]},
+	{"name":"doubao-seed-code","content_length":125000,"capabilities":["completion","tools"]},
 	{"name":"minimax-m2.7","content_length":200000,"capabilities":["completion","tools","thinking"]},
 	{"name":"minimax-m3","content_length":1000000,"capabilities":["completion","tools","thinking","vision"]},
 	{"name":"glm-5.1","content_length":200000,"capabilities":["completion","tools","thinking","vision"]},
